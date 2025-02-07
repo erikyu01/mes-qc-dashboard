@@ -94,7 +94,7 @@ const loadImg = () => {
 };
 
 const formModel = reactive<FormModel>({
-	userName: 'yuan',
+	userName: 'John',
 	passWord: '123456'
 });
 
@@ -104,7 +104,7 @@ const loginForm = ref<FormInstance>();
 const onFinish = async () => {
 	loginForm.value?.validateFields().then(async (formValues: any) => {
 		const postData = {
-			user_name: formValues.userName,
+			user_name: 'yuan',
 			pass_word: formValues.passWord
 		};
 		const res = await login(postData);
