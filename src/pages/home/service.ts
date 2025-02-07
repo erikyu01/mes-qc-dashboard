@@ -1,10 +1,14 @@
 import { GET } from '@/service/api';
 
 export const getOptions = () => {
+	console.log('Options data');
+	console.log(GET('/home/getOptions'));
 	return GET('/home/getOptions');
 };
 
 export const getInit = () => {
+	// console.log("Init data");
+	// console.log(GET('/home/getInitData'));
 	return GET('/home/getInitData');
 };
 

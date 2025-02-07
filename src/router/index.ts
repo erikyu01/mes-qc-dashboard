@@ -8,7 +8,7 @@ const router = createRouter({
 
 const setTitle = (to: RouteLocationNormalized) => {
 	// 设置页面标题
-	document.title = (to.meta && (to.meta.title as string)) || '人人租机后台';
+	document.title = (to.meta && (to.meta.title as string)) || '质量可视化大屏后台';
 };
 
 // 路由拦截

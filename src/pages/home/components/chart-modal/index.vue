@@ -83,19 +83,19 @@ const chartResize = debounce(() => {
 
 const chartDataObj: chartDataObjType = {
 	1: {
-		title: 'PR Efficiency',
+		title: '生产过程效率',
 		data: reviewEfficient,
 		container: reviewEfficient.container
 	},
 	2: {
-		title: 'OpenRank',
+		title: '平均反工数',
 		key: 'openrank',
 		data: openRankChart,
 		container: openRankChart.container,
 		chartType: 'line'
 	},
 	3: {
-		title: 'Developer Activity',
+		title: '产品合格率',
 		key: 'developer_activity',
 		data: deverChart,
 		container: deverChart.container,

@@ -1,0 +1,9 @@
+services:
+  qc_dashboard_web:
+    image: qc_dashboard_web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"  # Maps port 5173 to Nginx
+    restart: always

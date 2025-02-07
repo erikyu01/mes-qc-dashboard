@@ -6,7 +6,7 @@ const routes = [
 		name: 'Home',
 		component: Home,
 		meta: {
-			title: '开源数据发展趋势-主页'
+			title: '质量控制趋势可视化-主页'
 		}
 	}
 ];

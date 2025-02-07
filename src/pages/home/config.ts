@@ -34,27 +34,27 @@ export const colorList = [
 
 export const titleList: TitltListItem[] = [
 	{
-		label: '项目名',
+		label: '产线名称',
 		width: '20%'
 	},
 	{
-		label: '影响力',
+		label: '工艺稳定性',
 		width: '16%'
 	},
 	{
-		label: '发展趋势',
+		label: 'OEE',
 		width: '16%'
 	},
 	{
-		label: '社区反应',
+		label: '材料利用率',
 		width: '16%'
 	},
 	{
-		label: '开发活跃度',
+		label: '人员失误率',
 		width: '16%'
 	},
 	{
-		label: 'Github指数',
+		label: '生产总效率',
 		width: '16%'
 	}
 ];

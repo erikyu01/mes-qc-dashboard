@@ -11,12 +11,12 @@
 					<a-col v-bind="leftRightCol" class="chart-content-col">
 						<a-row class="chart-content-left">
 							<a-col class="chart-content-left-item" :span="24">
-								<ModuleItem title="PR处理效率" :loading="initLoading">
+								<ModuleItem title="生产流程效率" :loading="initLoading">
 									<div :ref="reviewEfficient.container" class="chart-container" />
 								</ModuleItem>
 							</a-col>
 							<a-col class="chart-content-left-item" :span="24">
-								<ModuleItem title="OpenRank" :loading="initLoading">
+								<ModuleItem title="平均返工数" :loading="initLoading">
 									<div :ref="openRankChart.container" class="chart-container"></div>
 								</ModuleItem>
 							</a-col>
@@ -34,7 +34,7 @@
 								</ModuleItem>
 							</a-col>
 							<a-col class="chart-content-center-item" :span="24">
-								<ModuleItem title="Github指数" :loading="github.loading">
+								<ModuleItem title="质量控制各项指数" :loading="github.loading">
 									<div class="virtual-list-content">
 										<list-header :titleList="titleList" />
 										<new-virtual-list
@@ -46,10 +46,10 @@
 											<template #item="{ item }">
 												<a-tooltip placement="top" color="rgba(73, 146, 255, 0.8)">
 													<template #title>
-														<span>项目名：{{ item.name }}</span>
+														<span>产线名称：生产线{{ item.project_id }}号</span>
 													</template>
 													<div class="virtual-list-item" @click="radarFirst.chart.addRadarData(item.name)">
-														<span class="virtual-list-item-col">{{ item.name }}</span>
+														<span class="virtual-list-item-col">生产线{{ item.project_id }}号</span>
 														<span class="virtual-list-item-col">{{ item.influence }}</span>
 														<span class="virtual-list-item-col">{{ item.trend }}</span>
 														<span class="virtual-list-item-col">{{ item.response }}</span>
@@ -68,17 +68,17 @@
 					<a-col v-bind="leftRightCol" class="chart-content-col">
 						<a-row class="chart-content-right">
 							<a-col class="chart-content-right-item" :span="24">
-								<ModuleItem title="关注度" :loading="initLoading">
+								<ModuleItem title="产线OEE" :loading="initLoading">
 									<div :ref="attentChart.container" class="chart-container"></div>
 								</ModuleItem>
 							</a-col>
 							<a-col class="chart-content-right-item" :span="24">
-								<ModuleItem title="开发者活跃度" :loading="initLoading">
+								<ModuleItem title="产品合格率" :loading="initLoading">
 									<div :ref="deverChart.container" class="chart-container"></div>
 								</ModuleItem>
 							</a-col>
 							<a-col class="chart-content-right-item" :span="24">
-								<ModuleItem title="项目活跃度" :loading="initLoading">
+								<ModuleItem title="工艺稳定性" :loading="initLoading">
 									<div :ref="projectChart.container" class="chart-container"></div>
 								</ModuleItem>
 							</a-col>
@@ -177,7 +177,12 @@ const loadImg = () => {
 const getOptionsData = async () => {
 	const res = await getOptions();
 	if (res.code === 200) {
-		optionStore.option = res.data || [];
+		// Transform the labels
+		optionStore.option =
+			res.data.map(item => ({
+				...item,
+				label: `生产线${item.value}号` // Update the label format
+			})) || [];
 	}
 };
 
@@ -190,13 +195,36 @@ const initLoading = ref<boolean>(false);
 const getInitData = async () => {
 	initLoading.value = true;
 	const res = await getInit();
+
+	if (res.data && res.data.list) {
+		res.data.list[0].name = '生产线4号';
+		res.data.list[1].name = '生产线8号';
+		res.data.list[2].name = '生产线9号';
+	}
+
 	if (res.code === 200) {
 		nextTick(() => {
+			// Randomize values for project_attention and project_activity between 90 and 100
+			const randomizeValue = () => Math.floor(Math.random() * 29) + 70; // Random number between 90 and 100
+
+			res.data.list.forEach(item => {
+				if (item.project_attention) {
+					Object.keys(item.project_attention).forEach(key => {
+						item.project_attention[key] = randomizeValue(); // Assign a random value
+					});
+				}
+				if (item.project_activity) {
+					Object.keys(item.project_activity).forEach(key => {
+						item.project_activity[key] = randomizeValue(); // Assign a random value
+					});
+				}
+			});
+
 			initDataStore.list = res.data.list || [];
 			openRankChart.chart.initChart(res.data.list, 'openrank');
 			deverChart.chart.initChart(res.data.list, 'developer_activity');
-			attentChart.chart.initChart(res.data.list, 'project_attention');
-			projectChart.chart.initChart(res.data.list, 'project_activity');
+			attentChart.chart.initChart(res.data.list, 'project_attention'); // Updated data
+			projectChart.chart.initChart(res.data.list, 'project_activity'); // Updated data
 			reviewEfficient.chart.initChart(res.data.list);
 			radarFirst.chart.initChart(res.data.list);
 		});

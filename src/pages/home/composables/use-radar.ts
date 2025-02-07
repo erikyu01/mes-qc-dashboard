@@ -25,11 +25,11 @@ export default function (): RadarChartType {
 	});
 
 	const indicator = ref<RadarOption['indicator']>([
-		{ name: 'Influence', max: 120 },
-		{ name: 'Response', max: 120 },
-		{ name: 'Activity', max: 120 },
-		{ name: 'Trend', max: 120 },
-		{ name: 'GitHub', max: 120 }
+		{ name: '工艺稳定性', max: 120 },
+		{ name: '产线总OEE', max: 120 },
+		{ name: '材料利用率', max: 120 },
+		{ name: '人员失误率', max: 120 },
+		{ name: '生产总效率', max: 120 }
 	]);
 	/**
 	 * @returns 返回option配置

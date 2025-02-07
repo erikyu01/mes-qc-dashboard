@@ -42,7 +42,7 @@ export default function (
 				formatter: (params: any) => {
 					let resStr: string = `
 						<div>${params[0].axisValueLabel}</div>
-						<div> (reviews | days)</div>
+						<div> (产量 | 缺陷点)</div>
 					`;
 					let i = 0;
 					while (i < params.length) {
@@ -141,7 +141,7 @@ export default function (
 			],
 			yAxis: [
 				{
-					name: 'reviews',
+					name: '产量(kg)',
 					max: 2500,
 					type: 'value',
 					interval: 500,
@@ -158,7 +158,7 @@ export default function (
 					}
 				},
 				{
-					name: 'days(h)',
+					name: '缺陷点(个)',
 					nameLocation: 'start',
 					min: 0,
 					max: 250,
@@ -188,7 +188,8 @@ export default function (
 	 */
 	function initChart(nodes: PieSeriesOption['data']): any {
 		if (!container.value) return;
-
+		console.log('nodes', nodes);
+		console.log('initChart called with nodes:', nodes, new Error().stack);
 		const reviewData: EChartsCoreOption[] = [];
 		nodes &&
 			nodes.forEach((item: any) => {

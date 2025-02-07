@@ -2,7 +2,7 @@
 	<div class="login">
 		<transition-loading :isShow="loadShow" />
 
-		<div class="login-header">开源数据发展趋势仪表盘</div>
+		<div class="login-header">质量控制趋势可视化仪表盘</div>
 
 		<a-form :model="formModel" ref="loginForm" class="login-form" :rules="rules">
 			<a-form-item name="userName">

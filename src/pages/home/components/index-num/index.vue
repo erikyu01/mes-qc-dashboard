@@ -6,8 +6,8 @@
 			<a-col class="index-col">{{ renderGit.toFixed(2) }}</a-col>
 		</a-row>
 		<a-row class="index-row-label">
-			<a-col class="index-col">OpenRank平均值</a-col>
-			<a-col class="index-col">GitHub平均值</a-col>
+			<a-col class="index-col">反工数平均值 (件)</a-col>
+			<a-col class="index-col">合格率平均值 (%)</a-col>
 		</a-row>
 	</div>
 </template>

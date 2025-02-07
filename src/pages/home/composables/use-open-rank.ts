@@ -27,7 +27,7 @@ export default function (props?: {
 			type: 'line'
 		},
 		project_attention: {
-			interval: 200,
+			interval: 10,
 			type: 'bar'
 		},
 		developer_activity: {
@@ -35,7 +35,7 @@ export default function (props?: {
 			type: 'line'
 		},
 		project_activity: {
-			interval: 400,
+			interval: 10,
 			type: 'line'
 		}
 	};

@@ -1,6 +1,6 @@
 <template>
 	<div class="home-header">
-		<div class="home-header-title">开源数据发展趋势仪表盘</div>
+		<div class="home-header-title">质量控制趋势仪表盘</div>
 		<div class="home-header-time">
 			<span class="date-value">{{ date }}</span>
 			<span class="time-value">{{ time }}</span>

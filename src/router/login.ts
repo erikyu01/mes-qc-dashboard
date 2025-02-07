@@ -6,7 +6,7 @@ const routes = [
 		name: 'Login',
 		component: Login,
 		meta: {
-			title: '开源数据发展趋势-登录页'
+			title: '质量控制趋势大屏-登录页'
 		}
 	}
 ];
